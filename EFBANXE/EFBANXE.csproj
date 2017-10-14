@@ -195,9 +195,31 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710140551068_InitialModel.cs" />
+    <Compile Include="Migrations\201710140551068_InitialModel.Designer.cs">
+      <DependentUpon>201710140551068_InitialModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710140624023_CreateTableXe.cs" />
+    <Compile Include="Migrations\201710140624023_CreateTableXe.Designer.cs">
+      <DependentUpon>201710140624023_CreateTableXe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710140634097_CreateTableTinTuc.cs" />
+    <Compile Include="Migrations\201710140634097_CreateTableTinTuc.Designer.cs">
+      <DependentUpon>201710140634097_CreateTableTinTuc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710140656140_AddColumnUser.cs" />
+    <Compile Include="Migrations\201710140656140_AddColumnUser.Designer.cs">
+      <DependentUpon>201710140656140_AddColumnUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ApplicationDbContext.cs" />
+    <Compile Include="Models\ApplicationUser.cs" />
+    <Compile Include="Models\LoaiTinTuc.cs" />
+    <Compile Include="Models\LoaiXe.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\TinTuc.cs" />
+    <Compile Include="Models\Xe.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -274,6 +296,20 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201710140551068_InitialModel.resx">
+      <DependentUpon>201710140551068_InitialModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710140624023_CreateTableXe.resx">
+      <DependentUpon>201710140624023_CreateTableXe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710140634097_CreateTableTinTuc.resx">
+      <DependentUpon>201710140634097_CreateTableTinTuc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710140656140_AddColumnUser.resx">
+      <DependentUpon>201710140656140_AddColumnUser.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

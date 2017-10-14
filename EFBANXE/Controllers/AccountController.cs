@@ -151,7 +151,7 @@ namespace EFBANXE.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, HoTen = model.HoTen, DiaChi = model.DiaChi, NgaySinh = model.NgaySinh, NgayVaoLam = model.NgayVaoLam, TrangThai = model.TrangThai, Sdt = model.Sdt };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
