@@ -13,7 +13,7 @@ namespace EFBANXE.Models
 
         [Required]
         [StringLength(255,ErrorMessage = "Tên loại xe không được quá 255 ký tự.")]
-        [Display(Name = "Tên Loại Xe")]
+        [Display(Name = "Loại Xe")]
         public string Ten { get; set; }
     }
 }

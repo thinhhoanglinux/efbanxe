@@ -1,13 +1,13 @@
 ﻿@model EFBANXE.Models.IndexViewModel
 @{
-    ViewBag.Title = "Manage";
+    ViewBag.Title = "Quản Lý";
 }
 
 <h2>@ViewBag.Title.</h2>
 
 <p class="text-success">@ViewBag.StatusMessage</p>
 <div>
-    <h4>Change your account settings</h4>
+    <h4>Thiết lập tài khoản</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>Password:</dt>
@@ -15,7 +15,7 @@
             [
             @if (Model.HasPassword)
             {
-                @Html.ActionLink("Change your password", "ChangePassword")
+                @Html.ActionLink("Thay đổi mật khẩu", "ChangePassword")
             }
             else
             {

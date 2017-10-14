@@ -1,0 +1,63 @@
+﻿@model IEnumerable<EFBANXE.Models.TinTuc>
+
+@{
+    ViewBag.Title = "Tin tức đã xóa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Tin tức</h2>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TieuDe)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NoiDung)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ThoiGianDang)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Hinh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LoaiTinTuc.TenLoaiTinTuc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NhanVien.HoTen)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TrangThai)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TieuDe)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NoiDung)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ThoiGianDang)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Hinh)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LoaiTinTuc.TenLoaiTinTuc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NhanVien.HoTen)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TrangThai)
+        </td>
+        <td>
+            @Html.ActionLink("Xóa", "Delete2", new { id=item.TinTucId })
+        </td>
+    </tr>
+}
+</table>
