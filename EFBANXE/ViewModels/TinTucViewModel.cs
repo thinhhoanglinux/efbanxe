@@ -17,6 +17,7 @@ namespace EFBANXE.ViewModels
         public string TieuDe { get; set; }
 
         [Required]
+        [DataType(DataType.MultilineText)]
         [Display(Name = "Nội Dung")]
         public string NoiDung { get; set; }
 

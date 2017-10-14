@@ -28,7 +28,16 @@ namespace EFBANXE.Controllers
         [Authorize]
         public ActionResult Details(int id)
         {
-            return View();
+            if(id == 0)
+            {
+                return HttpNotFound();
+            }
+            var userId = User.Identity.GetUserId();
+            var tintuc = _dbContext.TinTucs
+                .Include(c=>c.LoaiTinTuc)
+                .Include(c=>c.NhanVien)
+                .Single(s => s.TinTucId == id && s.NhanVienId == userId);
+            return View(tintuc);
         }
 
         // GET: TinTucs/Create
@@ -173,6 +182,43 @@ namespace EFBANXE.Controllers
                 .Include(c=>c.NhanVien)
                 .Where(w => w.TrangThai == false);
             return View(tintuc);
+        }
+
+        // GET: TinTucs/Delete/5
+        [Authorize]
+        public ActionResult Delete2(int id)
+        {
+            if (id == 0)
+            {
+                return HttpNotFound();
+            }
+            var tintuc = _dbContext.TinTucs
+                .Include(c => c.LoaiTinTuc)
+                .Include(c => c.NhanVien)
+                .Single(s => s.TinTucId == id);
+            return View(tintuc);
+        }
+
+        // POST: TinTucs/Delete/5
+        [Authorize]
+        [HttpPost]
+        public ActionResult Delete2(int id, TinTuc tintuc)
+        {
+            try
+            {
+                // TODO: Add delete logic here
+                tintuc = _dbContext.TinTucs
+                    .Include(c => c.NhanVien)
+                    .Include(c => c.LoaiTinTuc)
+                    .Single(s => s.TinTucId == id);
+                tintuc.TrangThai = true;
+                _dbContext.SaveChanges();
+                return RedirectToAction("Deleted");
+            }
+            catch
+            {
+                return View();
+            }
         }
     }
 }
