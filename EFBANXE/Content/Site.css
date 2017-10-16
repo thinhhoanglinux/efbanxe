@@ -22,3 +22,11 @@ select,
 textarea {
     max-width: 280px;
 }
+#itemxe{
+    text-decoration:none;
+    padding:2px;
+}
+#itemxe:hover{
+    background-color: rgba(0,0,0,0.1);
+    transition: 0.4s;
+}
