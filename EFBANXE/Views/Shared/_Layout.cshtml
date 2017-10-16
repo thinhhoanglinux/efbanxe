@@ -6,7 +6,6 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -24,15 +23,18 @@
                     <li>@Html.ActionLink("Trang Chủ", "Index", "Home")</li>
                     <li>@Html.ActionLink("Thông Tin", "About", "Home")</li>
                     <li>@Html.ActionLink("Liên Hệ", "Contact", "Home")</li>
-                    <li>
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">
-                            Quản Lý<span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="@Url.Action("Index","Xes")">Xe</a></li>
-                            <li><a href="@Url.Action("Index","TinTucs")">Tin Tức</a></li>
-                        </ul>
-                    </li>
+                    @if (HttpContext.Current.User.IsInRole("EMPLOYEE"))
+                    {
+                        <li>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">
+                                Quản Lý<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="@Url.Action("Index", "Xes")">Xe</a></li>
+                                <li><a href="@Url.Action("Index", "TinTucs")">Tin Tức</a></li>
+                            </ul>
+                        </li>
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -40,12 +42,18 @@
     </div>
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Hyundai - 14DTHC05</p>
-        </footer>
+        <div style="clear:both"></div>
     </div>
-
+    <footer style="background-color:black;padding:10px;margin-top:10px;bottom:0;margin-bottom:0">
+        <p style="color:#D6D6D6" class="text-center">&copy; @DateTime.Now.Year. HyunDai 14DTHC05</p>
+        <p style="color:#D6D6D6" class="text-center">Hyundai Gia Định: 8A Lý Thường Kiệt,P12, Q5</p>
+        <p style="color:#D6D6D6" class="text-center">Hyundai Ngọc An: P.Hiệp Bình Phước, Q.Thủ Đức, Tp.HCM</p>
+        <p style="color:#D6D6D6" class="text-center">Hyundai Nam Kỳ Khởi Nghĩa: Nam Kỳ Khởi Nghĩa, P.7, Q.3.</p>
+        <p style="color:#D6D6D6" class="text-center">Hyundai Gia Định 3S: Phổ Quang, P. 2, Q.Tân Bình,Tp. HCM.</p>
+        <p style="color:#D6D6D6" class="text-center">Website: http://localhost-14dthc05.com - fb:https://www.facebook.com/thinhhoangrsa</p>
+        <p style="color:#D6D6D6" class="text-center">Hyundai Ngọc An: P.Hiệp Bình Phước, Q.Thủ Đức, Tp.HCM</p>
+        <p style="color:#D6D6D6" class="text-center">Điện thoại: xxxx xxx xxx </p>
+    </footer>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

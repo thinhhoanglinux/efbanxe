@@ -40,7 +40,6 @@ namespace EFBANXE.ViewModels
         [Required]
         [Display(Name = "Loại Xe")]
         public int LoaiXe { get; set; }
-
         public string Heading { get; set; }
         public string Action
         {

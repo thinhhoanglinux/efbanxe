@@ -1,31 +1,27 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@model EFBANXE.ViewModels.XeTinTucViewModel
+@{
+    ViewBag.Title = "Trang Chủ";
 }
-
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
-
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
+<div>
+    <img src="~/Content/images/cover.jpg" width="100%" />
+    <h2 class="text-primary" style="text-align:center;font-size:30px;font-weight:bold;font-family:'Times New Roman', Times, serif">SẢN PHẨM</h2>
+    @foreach (var xe in Model.Xes)
+    {
+        <a class="col-sm-12 col-xs-12 col-md-4 col-lg-4" href="#" style="text-decoration:none">
+            <img class="panel panel-info" src="@Url.Content(xe.Hinh)" alt="@xe.Ten" width="100%" height="250px" />
+            <h4 class="text-primary text-center panel-title">@xe.Ten</h4>
+            <h5 class="text-primary text-center ">@xe.Gia</h5>
+        </a>
+    }
+    <div style="clear:both"></div>
+    <hr />
+    <h2 class="text-primary" style="text-align:center;font-size:30px;font-weight:bold;font-family:'Times New Roman', Times, serif">TIN TỨC</h2>
+    @foreach (var tintuc in Model.TinTucs)
+    {
+        <div class="col-sm-12 col-xs-12 col-md-4 col-lg-4">
+            <img src="@Url.Content(tintuc.Hinh)" width="100%" height="250px"/>
+            <p style="padding:10px" class="text-primary text-center panel-title">@tintuc.TieuDe</p>
+            <p style="padding:10px" class="text-muted">@tintuc.NoiDung</p>
+        </div>
+    }
 </div>
