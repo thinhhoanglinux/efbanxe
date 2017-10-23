@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Web;
 
 namespace EFBANXE.ViewModels
 {
@@ -24,9 +26,13 @@ namespace EFBANXE.ViewModels
         public decimal Gia { get; set; }
 
         [Required]
-        [DataType(DataType.ImageUrl)]
         [Display(Name = "Hình")]
         public string Hinh { get; set; }
+
+        public XeViewModel()
+        {
+            Hinh = "~/Content/images/addcar.jpg";
+        }
 
         [Required]
         [Display(Name = "Đánh Giá")]

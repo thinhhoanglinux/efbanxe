@@ -28,6 +28,11 @@ namespace EFBANXE.ViewModels
         [Display(Name = "Hình")]
         public string Hinh { get; set; }
 
+        public TinTucViewModel()
+        {
+            Hinh = "~/Content/images/addnews.png";
+        }
+
         public IEnumerable<LoaiTinTuc> LoaiTinTucs { get; set; }
         [Required]
         [Display(Name = "Loại Tin Tức")]

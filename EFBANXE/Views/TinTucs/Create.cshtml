@@ -4,87 +4,89 @@
     ViewBag.Title = Model.Action;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@if (Model.Heading == "Tạo mới")
-{
-    <h2>Tạo</h2>
-}
-else if (Model.Heading == "Sửa")
-{
-    <h2>Sửa</h2>
-}
-
-@using (Html.BeginForm(Model.Action, "TinTucs"))
+@using (Html.BeginForm(Model.Action, "TinTucs", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     @Html.HiddenFor(m => m.TinTucId)
+    @Html.HiddenFor(m => m.Hinh)
     <div class="form-horizontal">
-        <h4>Tin Tức</h4>
         <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.TieuDe, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TieuDe, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TieuDe, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        
-        @if (Model.Heading == "Tạo mới")
-        {
+        <div class="col-md-8">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
-                @Html.LabelFor(model => model.ThoiGianDang, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.TieuDe, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.ThoiGianDang, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
-                    @Html.ValidationMessageFor(model => model.ThoiGianDang, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.TieuDe, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.TieuDe, "", new { @class = "text-danger" })
                 </div>
             </div>
-        }
-        <div class="form-group">
-            @Html.LabelFor(model => model.Hinh, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Hinh, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Hinh, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.LoaiTinTuc, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(m => m.LoaiTinTuc,
+            @if (Model.Heading == "Tạo mới")
+            {
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ThoiGianDang, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ThoiGianDang, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                        @Html.ValidationMessageFor(model => model.ThoiGianDang, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            }
+            <div class="form-group">
+                @Html.LabelFor(model => model.LoaiTinTuc, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(m => m.LoaiTinTuc,
                new SelectList(Model.LoaiTinTucs, "LoaiTinTucId", "TenLoaiTinTuc"), "", new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.LoaiTinTuc, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.NoiDung, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.NoiDung, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.NoiDung, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        @if (Model.Heading == "Tạo mới")
-        {
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Tạo" class="btn btn-primary" />
+                    @Html.ValidationMessageFor(model => model.LoaiTinTuc, "", new { @class = "text-danger" })
                 </div>
             </div>
-        }
-        else
-        {
             <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Sửa" class="btn btn-primary" />
+                @Html.LabelFor(model => model.NoiDung, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.NoiDung, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.NoiDung, "", new { @class = "text-danger" })
                 </div>
             </div>
-        }
+            @if (Model.Heading == "Tạo mới")
+            {
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Tạo" class="btn btn-primary btn-block" />
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Sửa" class="btn btn-primary btn-block" />
+                    </div>
+                </div>
+            }
+            <div>
+                @Html.ActionLink("Quay lại", "Index")
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <div class="col-md-10">
+                    <img alt="TinTucError" src="@Url.Content(Model.Hinh)" height="300" width="300" id="xemTruoc" />
+                    <input type="file" name="chonHinh" accept="image/jpeg, image/png, image/jpg" width="300" height="300" onchange="ChonHinh(this, document.getElementById('xemTruoc'))" />
+                </div>
+            </div>
+        </div>
     </div>
 }
-<div>
-    @Html.ActionLink("Quay lại", "Index")
-</div>
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+<script>
+    function ChonHinh(chonHinh, xemTruoc) {
+        if (chonHinh.files && chonHinh.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $(xemTruoc).attr('src', e.target.result);
+            }
+            reader.readAsDataURL(chonHinh.files[0]);
+        }
+    }
+</script>
+
 }

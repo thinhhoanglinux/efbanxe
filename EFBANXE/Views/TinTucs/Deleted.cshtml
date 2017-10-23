@@ -5,9 +5,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Tin tức đã xóa</h2>
-<table class="table">
-    <tr>
+<h2 class="text-center btn-info" style="padding:10px">Tin tức đã xóa</h2>
+<table class="table table-responsive table-hover">
+    <tr class="active">
         <th>
             @Html.DisplayNameFor(model => model.TieuDe)
         </th>
@@ -56,7 +56,7 @@
             @Html.DisplayFor(modelItem => item.TrangThai)
         </td>
         <td>
-            @Html.ActionLink("Xóa", "Delete2", new { id=item.TinTucId })
+            @Html.ActionLink("Phục Hồi", "Delete2", new { id=item.TinTucId },new { @class="btn btn-danger"})
         </td>
     </tr>
 }

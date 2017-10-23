@@ -32,18 +32,56 @@ namespace EFBANXE.Controllers
             return View(viewModel);
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        public ActionResult Details(int id)
+        {
+            var xe = _dbContext.Xes
+                .Include(c => c.LoaiXe)
+                .Single(c => c.XeId == id);
+            XeDangKyLaiThu xeDangKyLaiThu = new XeDangKyLaiThu();
+            xeDangKyLaiThu.Xes = xe;
+            return View(xeDangKyLaiThu);
+        }
+
+        [HttpPost]
+        public ActionResult Details(XeDangKyLaiThu viewModel)
+        {
+            var dangKyLaiThu = new DangKyLaiThu
+            {
+                HoTen = viewModel.DangKyLaiThus.HoTen,
+                Email = viewModel.DangKyLaiThus.Email,
+                Sdt = viewModel.DangKyLaiThus.Sdt,
+                TrangThai = false,
+                NgayDangKy = viewModel.GetTimeCurrent(),
+                DiaChi = viewModel.DangKyLaiThus.DiaChi,
+                LoiNhan = viewModel.DangKyLaiThus.LoiNhan,
+                XeId = viewModel.Xes.XeId,
+            };
+            _dbContext.DangKyLaiThus.Add(dangKyLaiThu);
+            _dbContext.SaveChanges();
+
+
+            var xe = _dbContext.Xes
+                .Include(c => c.LoaiXe)
+                .Single(c => c.XeId == viewModel.Xes.XeId);
+            XeDangKyLaiThu xeDangKyLaiThu = new XeDangKyLaiThu();
+            xeDangKyLaiThu.Xes = xe;
+            ViewBag.onSuccess = "Bạn đã đăng ký lái thử xe này rồi, vui lòng quay lại sau!";
+            return View(xeDangKyLaiThu);
+        }
+
+        public ActionResult Information(int id)
+        {
+            var xe = _dbContext.Xes
+                .Include(c => c.LoaiXe)
+                .Single(c => c.XeId == id);
+            return View(xe);
         }
     }
 }

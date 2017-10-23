@@ -2,23 +2,60 @@
 @{
     ViewBag.Title = "Trang Chủ";
 }
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+        <li data-target="#myCarousel" data-slide-to="3"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+        <div class="item active">
+            <img src="~/Content/images/car4.jpg" alt="Los Angeles">
+        </div>
+
+        <div class="item">
+            <img src="~/Content/images/car5.jpg" alt="Los Angeles">
+        </div>
+
+        <div class="item">
+            <img src="~/Content/images/car4.jpg" alt="Los Angeles">
+        </div>
+        <div class="item">
+            <img src="~/Content/images/car5.jpg" alt="Los Angeles">
+        </div>
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
 <div>
     <h2 class="text-primary" style="text-align:center;font-size:30px;font-weight:bold;font-family:'Times New Roman', Times, serif">SẢN PHẨM</h2>
     @foreach (var xe in Model.Xes)
     {
-        <a id="itemxe" class="col-sm-12 col-xs-12 col-md-4 col-lg-4" href="#">
-            <img class="panel panel-info" src="@Url.Content(xe.Hinh)" alt="@xe.Ten" width="100%" height="250px" />
-            <h4 class="text-primary text-center panel-title"style="font-weight:bold">@xe.Ten</h4>
-            <h5 class="text-center" style="font-weight:bold;color:red">@xe.Gia.ToString("#,#,#") Đ</h5>
-        </a>
+        <div id="itemxe" class="col-sm-6 col-xs-12 col-md-4 col-lg-4 text-center">
+            <a href="@Url.Action("Details",new { id = xe.XeId})"> <img class="panel panel-info" src="@Url.Content(xe.Hinh)" alt="@xe.Ten" width="100%" height="250" /></a>
+            <h4 class="text-primary panel-title" style="font-weight:bold">@xe.Ten</h4>
+            <h5 style="font-weight:bold;color:red">@xe.Gia.ToString("#,#,#") Đ</h5>
+        </div>
     }
     <div style="clear:both"></div>
     <hr />
     <h2 class="text-primary" style="text-align:center;font-size:30px;font-weight:bold;font-family:'Times New Roman', Times, serif">TIN TỨC</h2>
     @foreach (var tintuc in Model.TinTucs)
     {
-        <div class="col-sm-12 col-xs-12 col-md-4 col-lg-4">
-            <img src="@Url.Content(tintuc.Hinh)" width="100%" height="250px"/>
+        <div class="col-sm-6 col-xs-12 col-md-4 col-lg-4">
+            <img src="@Url.Content(tintuc.Hinh)" width="100%" height="250" />
             <p style="padding:10px" class="text-primary text-center panel-title">@tintuc.TieuDe</p>
             <p style="padding:10px" class="text-muted">@tintuc.NoiDung</p>
         </div>

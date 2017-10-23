@@ -13,6 +13,7 @@ namespace EFBANXE.Models
         public DbSet<LoaiXe> LoaiXes { get; set; }
         public DbSet<TinTuc> TinTucs { get; set; }
         public DbSet<LoaiTinTuc> LoaiTinTucs { get; set; }
+        public DbSet<DangKyLaiThu> DangKyLaiThus { get; set; }
         public ApplicationDbContext()
             : base("EFBANXE", throwIfV1Schema: false)
         {

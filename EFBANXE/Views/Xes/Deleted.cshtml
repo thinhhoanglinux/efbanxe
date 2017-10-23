@@ -5,29 +5,23 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Xe đã xóa</h2>
-<table class="table">
-    <tr>
+<h2 class="text-center btn-info" style="padding:10px">Xe đã xóa</h2>
+<table class="table table-hover table-responsive">
+    <tr class="active">
         <th>
             @Html.DisplayNameFor(model => model.Ten)
         </th>
-        <th>
+        <th style="width:400px">
             @Html.DisplayNameFor(model => model.MoTa)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Gia)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Hinh)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.DanhGia)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ThoiGian)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TrangThai)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.LoaiXe.Ten)
@@ -44,10 +38,7 @@
             @Html.DisplayFor(modelItem => item.MoTa)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Gia)
-        </td>
-        <td>
-            <img alt="@Url.Content(item.Ten)" width="200" height="200" src="@Url.Content(item.Hinh)" />
+            <span>@item.Gia.ToString("#,#,#") Đ</span>
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.DanhGia)
@@ -56,13 +47,10 @@
             @Html.DisplayFor(modelItem => item.ThoiGian)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.TrangThai)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.LoaiXe.Ten)
         </td>
         <td>
-            @Html.ActionLink("Xóa", "Delete2", new { id=item.XeId })
+            @Html.ActionLink("Phục Hồi", "Delete2", new { id=item.XeId },new { @class="btn btn-danger"})
         </td>
     </tr>
 }

@@ -1,0 +1,98 @@
+﻿@model EFBANXE.Models.DangKyLaiThu
+
+@{
+    ViewBag.Title = "Duyệt";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Duyệt</h2>
+
+<h3>Bạn có muốn duyệt phiếu đăng ký lái thử này?</h3>
+<div>
+    <h4>Phiếu đăng ký lái thử</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.HoTen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoTen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sdt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sdt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DiaChi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiaChi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LoiNhan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoiNhan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayDangKy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayDangKy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TrangThai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TrangThai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Xe.Ten)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Xe.Ten)
+        </dd>
+
+    </dl>
+    @{ string a, b = "";}
+    @if (Model.TrangThai == true)
+    {
+        a = "btn btn-danger";
+        b = "Undo";
+    }
+    else
+    {
+        a = "btn btn-default";
+        b = "Duyệt";
+    }
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+        <div class="form-actions no-color">
+            <input type="submit" value="@b" class="@a" /> |
+            @Html.ActionLink("Quay lại", "Index")
+        </div>
+    }
+</div>

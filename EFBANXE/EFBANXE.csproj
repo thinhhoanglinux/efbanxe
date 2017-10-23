@@ -190,6 +190,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DangKyLaiThusController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\TinTucsController.cs" />
@@ -225,10 +226,15 @@
     <Compile Include="Migrations\201710141501408_AddColumnTrangThaiTableTinTuc.Designer.cs">
       <DependentUpon>201710141501408_AddColumnTrangThaiTableTinTuc.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710191524545_AddTableDangKyLaiThu.cs" />
+    <Compile Include="Migrations\201710191524545_AddTableDangKyLaiThu.Designer.cs">
+      <DependentUpon>201710191524545_AddTableDangKyLaiThu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
+    <Compile Include="Models\DangKyLaiThu.cs" />
     <Compile Include="Models\LoaiTinTuc.cs" />
     <Compile Include="Models\LoaiXe.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -237,21 +243,27 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\TinTucViewModel.cs" />
+    <Compile Include="ViewModels\XeDangKyLaiThu.cs" />
     <Compile Include="ViewModels\XeTinTucViewModel.cs" />
     <Compile Include="ViewModels\XeViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\addcar.jpg" />
+    <Content Include="Content\images\addnews.png" />
     <Content Include="Content\images\car1.jpg" />
     <Content Include="Content\images\car2.jpg" />
     <Content Include="Content\images\car3.jpg" />
     <Content Include="Content\images\car4.jpg" />
     <Content Include="Content\images\car5.jpg" />
+    <Content Include="Content\images\cart.png" />
+    <Content Include="Content\images\cartwhile.png" />
     <Content Include="Content\images\cover.jpg" />
     <Content Include="Content\images\cover1.jpg" />
     <Content Include="Content\images\cover2.jpg" />
     <Content Include="Content\images\cover3.jpg" />
+    <Content Include="Content\images\top-button.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -283,7 +295,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
@@ -318,6 +329,9 @@
     <Content Include="Views\TinTucs\Deleted.cshtml" />
     <Content Include="Views\TinTucs\Delete2.cshtml" />
     <Content Include="Views\TinTucs\Details.cshtml" />
+    <Content Include="Views\Home\Details.cshtml" />
+    <Content Include="Views\DangKyLaiThus\Index.cshtml" />
+    <Content Include="Views\DangKyLaiThus\Duyet.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -356,6 +370,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710141501408_AddColumnTrangThaiTableTinTuc.resx">
       <DependentUpon>201710141501408_AddColumnTrangThaiTableTinTuc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710191524545_AddTableDangKyLaiThu.resx">
+      <DependentUpon>201710191524545_AddTableDangKyLaiThu.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

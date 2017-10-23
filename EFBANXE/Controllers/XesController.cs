@@ -1,11 +1,16 @@
 ﻿using EFBANXE.Models;
 using EFBANXE.ViewModels;
+using System;
+using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 
 namespace EFBANXE.Controllers
 {
+    [Authorize(Roles = "ADMIN")]
     public class XesController : Controller
     {
         private readonly ApplicationDbContext _dbContext;
@@ -18,7 +23,7 @@ namespace EFBANXE.Controllers
         public ActionResult Index()
         {
             var xe = _dbContext.Xes
-                .Where(w=>w.TrangThai == true)
+                .Where(w => w.TrangThai == true)
                 .Include(c => c.LoaiXe);
             return View(xe);
         }
@@ -28,7 +33,7 @@ namespace EFBANXE.Controllers
         public ActionResult Details(int id)
         {
             var xe = _dbContext.Xes
-                .Include(c=>c.LoaiXe)
+                .Include(c => c.LoaiXe)
                 .Single(s => s.XeId == id);
             return View(xe);
         }
@@ -49,29 +54,30 @@ namespace EFBANXE.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(XeViewModel viewModel)
+        public ActionResult Create(XeViewModel viewModel,HttpPostedFileBase chonHinh)
         {
-            try
+            if(chonHinh != null)
             {
-                var xe = new Xe
-                {
-                    Ten = viewModel.Ten,
-                    MoTa = viewModel.MoTa,
-                    Gia = viewModel.Gia,
-                    Hinh = viewModel.Hinh,
-                    DanhGia = viewModel.DanhGia,
-                    ThoiGian = viewModel.ThoiGian,
-                    LoaiXeId = viewModel.LoaiXe,
-                    TrangThai = true
-                };
-                _dbContext.Xes.Add(xe);
-                _dbContext.SaveChanges();
-                return RedirectToAction("Index");
+                string fileName = Path.GetFileNameWithoutExtension(chonHinh.FileName);
+                string extensions = Path.GetExtension(chonHinh.FileName);
+                fileName = fileName + DateTime.Now.ToString("yymmssfff") + extensions;
+                viewModel.Hinh = "~/Content/images/" + fileName;
+                chonHinh.SaveAs(Path.Combine(Server.MapPath("~/Content/images/"), fileName));
             }
-            catch
+            var xe = new Xe
             {
-                return View();
-            }
+                Ten = viewModel.Ten,
+                MoTa = viewModel.MoTa,
+                Gia = viewModel.Gia,
+                Hinh = viewModel.Hinh,
+                DanhGia = viewModel.DanhGia,
+                ThoiGian = viewModel.ThoiGian,
+                LoaiXeId = viewModel.LoaiXe,
+                TrangThai = true
+            };
+            _dbContext.Xes.Add(xe);
+            _dbContext.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         // GET: Xes/Edit/5
@@ -93,14 +99,14 @@ namespace EFBANXE.Controllers
                 Heading = "Sửa",
                 LoaiXe = xe.LoaiXeId
             };
-            return View("Create",viewModel);
+            return View("Create", viewModel);
         }
 
         // POST: Xes/Edit/5
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Update(XeViewModel viewModel)
+        public ActionResult Update(XeViewModel viewModel,HttpPostedFileBase chonHinh)
         {
             try
             {
@@ -109,6 +115,15 @@ namespace EFBANXE.Controllers
                 {
                     viewModel.LoaiXes = _dbContext.LoaiXes.ToList();
                     return View("Create", viewModel);
+                }
+
+                if (chonHinh != null)
+                {
+                    string fileName = Path.GetFileNameWithoutExtension(chonHinh.FileName);
+                    string extensions = Path.GetExtension(chonHinh.FileName);
+                    fileName = fileName + DateTime.Now.ToString("yymmssfff") + extensions;
+                    viewModel.Hinh = "~/Content/images/" + fileName;
+                    chonHinh.SaveAs(Path.Combine(Server.MapPath("~/Content/images/"), fileName));
                 }
                 var xe = _dbContext.Xes.Single(s => s.XeId == viewModel.XeId);
 
@@ -131,12 +146,12 @@ namespace EFBANXE.Controllers
         [Authorize]
         public ActionResult Delete(int id)
         {
-            if(id == 0)
+            if (id == 0)
             {
                 return HttpNotFound();
             }
             var xe = _dbContext.Xes
-                .Include(c=>c.LoaiXe)
+                .Include(c => c.LoaiXe)
                 .Single(s => s.XeId == id);
             return View(xe);
         }
@@ -144,7 +159,7 @@ namespace EFBANXE.Controllers
         // POST: Xes/Delete/5
         [Authorize]
         [HttpPost]
-        public ActionResult Delete(int id,Xe xe)
+        public ActionResult Delete(int id, Xe xe)
         {
             try
             {
