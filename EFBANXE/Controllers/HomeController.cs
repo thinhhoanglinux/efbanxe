@@ -66,7 +66,6 @@ namespace EFBANXE.Controllers
             _dbContext.DangKyLaiThus.Add(dangKyLaiThu);
             _dbContext.SaveChanges();
 
-
             var xe = _dbContext.Xes
                 .Include(c => c.LoaiXe)
                 .Single(c => c.XeId == viewModel.Xes.XeId);
