@@ -73,7 +73,8 @@ namespace EFBANXE.Controllers
                 DanhGia = viewModel.DanhGia,
                 ThoiGian = viewModel.ThoiGian,
                 LoaiXeId = viewModel.LoaiXe,
-                TrangThai = true
+                TrangThai = true,
+                NoiBat = viewModel.NoiBat
             };
             _dbContext.Xes.Add(xe);
             _dbContext.SaveChanges();

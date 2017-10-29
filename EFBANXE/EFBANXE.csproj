@@ -194,6 +194,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\TinTucsController.cs" />
+    <Compile Include="Controllers\XeNoiBatsController.cs" />
     <Compile Include="Controllers\XesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -229,6 +230,10 @@
     <Compile Include="Migrations\201710191524545_AddTableDangKyLaiThu.cs" />
     <Compile Include="Migrations\201710191524545_AddTableDangKyLaiThu.Designer.cs">
       <DependentUpon>201710191524545_AddTableDangKyLaiThu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710250901568_AddColumnNoiBat.cs" />
+    <Compile Include="Migrations\201710250901568_AddColumnNoiBat.Designer.cs">
+      <DependentUpon>201710250901568_AddColumnNoiBat.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -332,6 +337,8 @@
     <Content Include="Views\Home\Details.cshtml" />
     <Content Include="Views\DangKyLaiThus\Index.cshtml" />
     <Content Include="Views\DangKyLaiThus\Duyet.cshtml" />
+    <Content Include="Views\XeNoiBats\Index.cshtml" />
+    <Content Include="Views\Home\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -373,6 +380,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710191524545_AddTableDangKyLaiThu.resx">
       <DependentUpon>201710191524545_AddTableDangKyLaiThu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710250901568_AddColumnNoiBat.resx">
+      <DependentUpon>201710250901568_AddColumnNoiBat.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

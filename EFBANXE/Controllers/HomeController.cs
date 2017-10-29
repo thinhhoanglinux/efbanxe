@@ -82,5 +82,15 @@ namespace EFBANXE.Controllers
                 .Single(c => c.XeId == id);
             return View(xe);
         }
+
+        public ActionResult Search(string Search, string submit)
+        {
+            submit = "Search";
+            var xe = _dbContext.Xes
+            .Include(c => c.LoaiXe)
+            .Where(w => w.LoaiXe.Ten.Equals(Search));
+            
+            return View(xe);
+        }
     }
 }

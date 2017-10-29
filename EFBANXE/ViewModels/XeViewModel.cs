@@ -51,5 +51,8 @@ namespace EFBANXE.ViewModels
         {
             get { return (XeId != 0) ? "Update" : "Create"; }
         }
+
+        [Required]
+        public Boolean NoiBat { get; set; }
     }
 }

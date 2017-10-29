@@ -23,6 +23,14 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Trang Chủ", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Xe Nổi Bật", "Index", "XeNoiBats")</li>
+                    <li>
+                        @using (Html.BeginForm("Search", "Home",FormMethod.Get))
+                        {
+                            @Html.TextBox("Search")
+                            <input type="submit" name="submit" value="Search" />
+                        }
+                    </li>
                     @*<li>@Html.ActionLink("Liên Hệ", "Contact", "Home")</li>*@
                     @if (HttpContext.Current.User.IsInRole("ADMIN"))
                     {
@@ -43,7 +51,7 @@
         </div>
     </div>
 
-    
+
     <div class="container body-content">
         <a id="toppage" style="cursor:pointer;position:fixed;z-index:100;right:0;bottom:50px;margin-right:10px"><img src="~/Content/images/top-button.png" height="50" width="50" /></a>
         @RenderBody()

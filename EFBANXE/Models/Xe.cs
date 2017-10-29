@@ -40,5 +40,7 @@ namespace EFBANXE.Models
             
         public LoaiXe LoaiXe { get; set; }
         public int LoaiXeId { get; set; }
+
+        public Boolean NoiBat { get; set; }
     }
 }
